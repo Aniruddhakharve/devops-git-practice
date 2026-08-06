@@ -57,3 +57,5 @@ git log --oneline --all --decorate
 ```
 
 Displays compact history across branches.
+
+This change was made directly from GitHub.
