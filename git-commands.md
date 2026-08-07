@@ -58,4 +58,79 @@ git log --oneline --all --decorate
 
 Displays compact history across branches.
 
-This change was made directly from GitHub.
+
+---
+
+## Advanced Git Commands
+
+### Merge Branch
+
+```bash
+git merge feature-login
+```
+
+Merges another branch into the current branch.
+
+### Squash Merge
+
+```bash
+git merge --squash feature-profile
+```
+
+Combines a branch's changes into the staging area so they can be committed as one commit.
+
+### Rebase
+
+```bash
+git rebase main
+```
+
+Replays current branch commits on top of another branch.
+
+### Stash Changes
+
+```bash
+git stash push -m "WIP changes"
+```
+
+Temporarily saves uncommitted changes.
+
+### List Stashes
+
+```bash
+git stash list
+```
+
+Shows saved stashes.
+
+### Restore and Remove Latest Stash
+
+```bash
+git stash pop
+```
+
+Applies the latest stash and removes it if successfully applied.
+
+### Apply Stash Without Removing It
+
+```bash
+git stash apply 'stash@{1}'
+```
+
+Applies a selected stash while keeping it in the stash list.
+
+### Cherry Pick
+
+```bash
+git cherry-pick <commit-hash>
+```
+
+Applies one specific commit onto the current branch.
+
+### Visualize Branch History
+
+```bash
+git log --oneline --graph --all --decorate
+```
+
+Displays branch and commit history graphically.
