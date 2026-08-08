@@ -1,6 +1,1 @@
 Commit X
-<<<<<<< HEAD
-Commit Y
-Commit Z
-=======
->>>>>>> parent of c121ad6 (Revert practice commit Y)
