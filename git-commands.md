@@ -134,3 +134,19 @@ git log --oneline --graph --all --decorate
 ```
 
 Displays branch and commit history graphically.
+
+---
+
+## Branching Strategies
+
+### GitFlow
+
+Uses `main`, `develop`, `feature`, `release`, and `hotfix` branches.
+
+### GitHub Flow
+
+Uses `main` with short-lived feature branches and Pull Requests.
+
+### Trunk-Based Development
+
+Uses a shared main/trunk with frequent integration and short-lived branches.
