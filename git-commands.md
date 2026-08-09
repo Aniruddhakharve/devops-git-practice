@@ -150,3 +150,77 @@ Uses `main` with short-lived feature branches and Pull Requests.
 ### Trunk-Based Development
 
 Uses a shared main/trunk with frequent integration and short-lived branches.
+
+
+---
+
+## GitHub CLI (`gh`)
+
+### Authentication
+
+```bash
+gh auth login
+gh auth status
+gh auth logout
+gh auth setup-git
+```
+
+### Repository Management
+
+```bash
+gh repo create
+gh repo clone
+gh repo view
+gh repo list
+gh repo delete
+```
+
+### Issues
+
+```bash
+gh issue create
+gh issue list
+gh issue view <number>
+gh issue close <number>
+```
+
+### Pull Requests
+
+```bash
+gh pr create
+gh pr list
+gh pr view <number>
+gh pr checks <number>
+gh pr merge <number>
+```
+
+### GitHub Actions
+
+```bash
+gh run list
+gh run view <run-id>
+gh run watch <run-id>
+gh workflow list
+gh workflow view <workflow>
+```
+
+### Useful Commands
+
+```bash
+gh api user
+gh search repos "devops"
+gh gist create <file>
+gh release list
+gh alias set prs 'pr list'
+gh alias list
+```
+
+### Machine-Readable Output
+
+Many `gh` commands support `--json`, which is useful when using GitHub CLI inside automation scripts.
+
+Example:
+
+```bash
+gh repo list --json name,url
+```
