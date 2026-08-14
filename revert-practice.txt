@@ -1,3 +1,2 @@
 Revert practice - X
-Revert practice - Y
 Revert practice - Z
