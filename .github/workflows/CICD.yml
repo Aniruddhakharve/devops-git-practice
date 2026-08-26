@@ -40,6 +40,7 @@ jobs:
         run: echo "test the code using testing tools"
 
   dipatch:
+    if: inputs.enviroment== 'dev'
     needs: test
     runs-on: ubuntu-latest
     steps:
