@@ -32,4 +32,4 @@ jobs:
     runs-on: ubuntu-slim
     steps:
       - name: dispatch the cluster on server
-        run: echo "disptach the code on server"
+        run: echo "disptach the code on server plz"
