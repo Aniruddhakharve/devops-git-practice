@@ -1,0 +1,30 @@
+name: hello Github
+
+on:
+  workflow_dispatch: 
+
+
+jobs:
+  code:
+    runs-on: ubuntu-slim
+    steps: 
+      - name: checkout code
+        run: echo "code clone from github"
+
+  buid:
+    runs-on: ubuntu-slim
+    steps:
+      - name: build the code
+        run: echo "build the code using docker"
+
+  test:
+    runs-on: ubuntu-slim
+    steps:
+      - name: test the code
+        run: echo "test the code using testing tools"
+
+  dipatch:
+    runs-on: ubuntu-slim
+    steps:
+      - name: dispatch the cluster on server
+        run: echo "disptach the code on server"
