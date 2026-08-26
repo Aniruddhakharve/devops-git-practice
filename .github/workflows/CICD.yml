@@ -1,9 +1,21 @@
 name: hello Github
 
 on:
-  push:
-    branches: [main]
-    paths: ['*/*/CICD.yml']
+  # push:
+  #   branches: [main]
+  #   paths: ['*/*/CICD.yml']
+
+  workflow_dispatch:
+      inputs:
+        enviroment:
+          description: "choose ENV"
+          default: 'dev'
+          required: true
+          type: choice
+          options:
+            - dev
+            - prod
+            - staging
 
 
 jobs:
