@@ -12,18 +12,21 @@ jobs:
         run: echo "code clone from github"
 
   buid:
+    needs: code
     runs-on: ubuntu-slim
     steps:
       - name: build the code
         run: echo "build the code using docker"
 
   test:
+    needs: buid
     runs-on: ubuntu-slim
     steps:
       - name: test the code
         run: echo "test the code using testing tools"
 
   dipatch:
+    needs: test
     runs-on: ubuntu-slim
     steps:
       - name: dispatch the cluster on server
