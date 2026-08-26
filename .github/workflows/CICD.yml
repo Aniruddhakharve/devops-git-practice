@@ -32,4 +32,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: dispatch the cluster on server
-        run: echo "disptach the code on server plz"
+        run: echo "disptach the code on server "
