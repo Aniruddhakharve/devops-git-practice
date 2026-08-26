@@ -1,0 +1,21 @@
+name: hello-workflow
+
+on:
+ push:
+   branches: [main]
+   paths:
+     - '**.yml'
+  
+
+jobs:
+  greet:
+    runs-on:
+      - ubuntu-slim
+    steps:
+      - name: say hello to users
+        run: echo "hello dosto"
+        
+      - name: say hello to username
+        run : echo "hello $USER"
+
+  
