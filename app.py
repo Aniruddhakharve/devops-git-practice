@@ -1,7 +1,13 @@
-def add(a, b):
-    return a + b
+from flask import Flask, render_template
+
+app = Flask(__name__)
 
 
-#  Exactly 2 blank lines here
-def subtract(a, b):
-    return a - b
+@app.route("/")
+def hello_world():
+    return render_template("index.html")
+
+
+@app.route("/health")
+def health():
+    return "Server is up and running"
