@@ -6,7 +6,7 @@ on:
 
 jobs:
   build-and-push:
-    runs-on: ubuntu:latest
+    runs-on: ubuntu-latest
 
     steps:
         - name: code checkout
@@ -28,7 +28,7 @@ jobs:
           uses: docker/build-push-action@v6
           with:
             context: .
-            file: Dockerfile
+            file: ./Dockerfile
             push: true
             tags: | 
               ${{vars.DOCKERHUB_USER}}/appss:latest
