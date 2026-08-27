@@ -1,6 +1,6 @@
 services:
     web:
-      image: ${DOCKERHUB_USER}/appss:latest
+      image: ${DOCKERHUB_USER}/appss:${DOCKER_TAG}
       ports:
         - "80:80"
       
