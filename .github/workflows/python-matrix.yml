@@ -19,8 +19,8 @@ jobs:
 
         - name: install libraries & dependencies
           run: |
-            pip intall -r requirements.txt
+            pip install -r requirements.txt
 
         - name: run linit flake 8
           run: |
-            flake8 .github/workflows/app.py
+            flake8  app.py
