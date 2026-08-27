@@ -1,0 +1,26 @@
+name: python lint
+
+on:
+  push:
+    branches: [ main]
+
+
+jobs:
+  validate:  
+    runs-on: ubuntu-latest
+    steps:
+        - name: checkout code
+          uses: actions/checkout@v7
+          
+        - name: setup python
+          uses: actions/setup-python@v7
+          with:
+            python-version: "3.11"
+
+        - name: install libraries & dependencies
+          run: |
+            pip intall -r requirements.txt
+
+        - name: run linit flake 8
+          run: |
+            flake8 .github/workflows/app.py
