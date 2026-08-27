@@ -1,0 +1,26 @@
+name: deploy app
+
+on:
+#   push:
+#     branches: [ main]
+#     workflow_run:
+#         workflow: docker build and push
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    env:
+      DOCKERHUB_USER: ${{ vars.DOCKERHUB_USER }}
+    runs-on: self-hosted
+    steps: 
+        - name: checkout code
+          uses: actions/checkout@v7
+
+        - name: setup docker compose
+          uses: docker/setup-compose-action@v2
+
+        - name: deploy with docker compose
+          run: docker compose up -d --build
+
+
+
