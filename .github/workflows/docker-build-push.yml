@@ -33,5 +33,4 @@ jobs:
             tags: | 
               ${{vars.DOCKERHUB_USER}}/appss:latest
               ${{ vars.DOCKERHUB_USER }}/appss:${{ github.sha }}
-              ${{ vars.DOCKERHUB_USER }}/appss:${{ github.HEAD_REF }}
             
