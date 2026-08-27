@@ -4,85 +4,280 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DevOps Zero To Hero</title>
+
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            color: #e0e0e0;
+            padding: 24px;
+
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
+                         Roboto, Helvetica, Arial, sans-serif;
+
+            color: #f8fafc;
+
+            background:
+                radial-gradient(circle at 20% 20%, rgba(0, 210, 255, 0.15), transparent 30%),
+                radial-gradient(circle at 80% 80%, rgba(123, 47, 247, 0.18), transparent 30%),
+                linear-gradient(135deg, #080b18, #15132e, #0b1020);
+
+            overflow: hidden;
         }
+
         .container {
+            width: 100%;
+            max-width: 850px;
             text-align: center;
-            padding: 2rem;
-            max-width: 640px;
+            padding: 48px 32px;
         }
+
+        .status {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+
+            padding: 8px 15px;
+            margin-bottom: 24px;
+
+            border: 1px solid rgba(74, 222, 128, 0.3);
+            border-radius: 999px;
+
+            background: rgba(74, 222, 128, 0.08);
+            color: #86efac;
+
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #4ade80;
+            box-shadow: 0 0 12px rgba(74, 222, 128, 0.8);
+        }
+
         h1 {
-            font-size: 2.5rem;
-            margin-bottom: 0.5rem;
-            background: linear-gradient(90deg, #00d2ff, #7b2ff7);
+            font-size: clamp(2.6rem, 7vw, 4.5rem);
+            line-height: 1.05;
+            margin-bottom: 18px;
+
+            background: linear-gradient(
+                90deg,
+                #00d2ff,
+                #7b2ff7,
+                #c084fc
+            );
+
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
+
+        .subtitle {
+            max-width: 600px;
+            margin: 0 auto 28px;
+
+            color: #a5b4fc;
+            font-size: 1.05rem;
+            line-height: 1.7;
+        }
+
         .badge {
             display: inline-block;
-            margin: 1rem 0 2rem;
-            padding: 0.4rem 1.2rem;
-            border: 1px solid #7b2ff7;
+
+            margin-bottom: 42px;
+            padding: 9px 20px;
+
+            border: 1px solid rgba(139, 92, 246, 0.45);
             border-radius: 999px;
-            font-size: 0.9rem;
+
+            background: rgba(123, 47, 247, 0.1);
             color: #c4b5fd;
-            letter-spacing: 0.05em;
+
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+
+            box-shadow: 0 0 25px rgba(123, 47, 247, 0.12);
         }
+
         .cards {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
         }
+
         .card {
-            background: rgba(255, 255, 255, 0.06);
+            position: relative;
+
+            padding: 28px 22px;
+
             border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 12px;
-            padding: 1.5rem 1.8rem;
-            min-width: 150px;
-            flex: 1;
+            border-radius: 18px;
+
+            background: rgba(255, 255, 255, 0.055);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+
+            box-shadow:
+                0 15px 40px rgba(0, 0, 0, 0.25),
+                inset 0 1px 0 rgba(255, 255, 255, 0.06);
+
+            transition:
+                transform 0.25s ease,
+                border-color 0.25s ease,
+                background 0.25s ease;
         }
+
+        .card:hover {
+            transform: translateY(-7px);
+
+            border-color: rgba(139, 92, 246, 0.5);
+            background: rgba(255, 255, 255, 0.085);
+
+            box-shadow:
+                0 20px 45px rgba(0, 0, 0, 0.35),
+                0 0 25px rgba(123, 47, 247, 0.1);
+        }
+
+        .icon {
+            width: 48px;
+            height: 48px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            margin: 0 auto 18px;
+
+            border-radius: 14px;
+
+            background: linear-gradient(
+                135deg,
+                rgba(0, 210, 255, 0.15),
+                rgba(123, 47, 247, 0.2)
+            );
+
+            border: 1px solid rgba(255, 255, 255, 0.08);
+
+            font-size: 1.35rem;
+        }
+
         .card span {
             display: block;
-            font-size: 0.75rem;
+
+            margin-bottom: 8px;
+
+            color: #94a3b8;
+
+            font-size: 0.7rem;
+            font-weight: 700;
+
             text-transform: uppercase;
-            letter-spacing: 0.1em;
-            color: #9ca3af;
-            margin-bottom: 0.4rem;
+            letter-spacing: 0.12em;
         }
+
         .card strong {
-            font-size: 1.25rem;
-            color: #f9fafb;
+            font-size: 1.15rem;
+            color: #f8fafc;
+        }
+
+        .footer {
+            margin-top: 38px;
+
+            color: #64748b;
+            font-size: 0.8rem;
+        }
+
+        .footer span {
+            color: #94a3b8;
+        }
+
+        @media (max-width: 700px) {
+            body {
+                overflow: auto;
+            }
+
+            .container {
+                padding: 35px 15px;
+            }
+
+            .cards {
+                grid-template-columns: 1fr;
+            }
+
+            .card {
+                padding: 24px;
+            }
+
+            .badge {
+                margin-bottom: 30px;
+            }
         }
     </style>
 </head>
+
 <body>
+
     <div class="container">
+
+        <div class="status">
+            <span class="status-dot"></span>
+            Deployment Online
+        </div>
+
         <h1>DevOps Zero To Hero</h1>
-        <div class="badge">Josh Batch 10</div>
+
+        <p class="subtitle">
+            Building, containerizing and deploying applications
+            with modern DevOps technologies.
+        </p>
+
+        <div class="badge">
+            Josh Batch 10
+        </div>
+
         <div class="cards">
+
             <div class="card">
+                <div class="icon">🐍</div>
                 <span>Framework</span>
                 <strong>Flask 3.1</strong>
             </div>
+
             <div class="card">
+                <div class="icon">⚙️</div>
                 <span>Runtime</span>
                 <strong>Python 3.14</strong>
             </div>
+
             <div class="card">
+                <div class="icon">☁️</div>
                 <span>Deploy</span>
                 <strong>AWS ECS</strong>
             </div>
+
         </div>
+
+        <div class="footer">
+            Built with <span>Docker</span> •
+            Automated with <span>GitHub Actions</span> •
+            Deployed on <span>AWS</span>
+        </div>
+
     </div>
+
 </body>
 </html>
