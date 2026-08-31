@@ -20,9 +20,27 @@ jobs:
             username: ${{ secrets.EC2_SSH_USER }}
             key: ${{ secrets.EC2_SSH_PRIVATE_KEY }}
             script: |
-                 echo "Installing required packages & folders"
-                 sudo apt-get update && sudo apt-get install docker.io docker-compose-v2 -y
-                 sudo usermod -aG docker $USER
+                echo "Installing required packages & folders"
+                if ! command -v docker &> /dev/null
+                then
+                    echo "Docker not found. Installing Docker..."
+
+                    sudo apt-get update
+                    sudo apt-get install -y docker.io docker-compose-v2
+
+                    sudo systemctl enable docker
+                    sudo systemctl start docker
+
+                    sudo usermod -aG docker $USER
+
+                    echo "Docker installation completed."
+                else
+                    echo "Docker is already installed."
+                fi
+
+                # echo "Installing required packages & folders"
+                #  sudo apt-get update && sudo apt-get install docker.io docker-compose-v2 -y
+                #  sudo usermod -aG docker $USER
                  mkdir -p devops
 
         - name: Copy files via SSH
@@ -47,4 +65,4 @@ jobs:
                  export DOCKERHUB_USER=${{ vars.DOCKERHUB_USER }}
                  export DOCKER_TAG=${{ github.sha }}
                  echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login --username ${{ vars.DOCKERHUB_USER }} --password-stdin
-                 cd ~/devops && docker compose down && docker compose up -d --build --force-recreate --pull always
+                 cd ~/devops && docker compose down && docker compose up -d  --force-recreate --pull always
