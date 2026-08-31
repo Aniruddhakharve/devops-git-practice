@@ -1,0 +1,30 @@
+#uses triviy image scanner for scanning docker images for CVES
+name: Image scanner
+
+on:
+  workflow_call:
+
+jobs:
+    image-scanner:
+        runs-on: ubuntu-latest
+        steps:
+            - name: checkout code
+              uses: actions/checkout@v7
+
+            # Login into docker
+            - name: Log in to Docker Hub
+              uses: docker/login-action@v3
+              with:
+                username: ${{ vars.DOCKERHUB_USER}}
+                password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+            - name: triviy image scan
+              uses: aquasecurity/trivy-action@master
+              with:
+                image-ref: ${{ vars.DOCKERHUB_USER }}/appss:${{ github.sha }}
+                scan-type: 'image'
+                format: 'table'
+          # Set exit-code to '1' to break the build if issues are found
+                exit-code: '1'
+                ignore-unfixed: true
+                severity: 'CRITICAL'
