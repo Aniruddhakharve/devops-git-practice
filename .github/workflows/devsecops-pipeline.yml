@@ -29,5 +29,6 @@ jobs:
       uses: ./.github/workflows/image-scanner.yml
       needs: [build]
       secrets: inherit
+      args: '--skip-files **/pip/_vendor/bom.cdx.json'
 
     
