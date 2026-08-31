@@ -37,10 +37,15 @@ jobs:
 
         - name: ssh to prod server and deploy
           uses: appleboy/ssh-action@v0.1.9
+          env:
+            DOCKERHUB_USER: ${{ vars.DOCKERHUB_USER }}
+            DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
+            DOCKER_TAG: ${{ github.sha }}
           with:
             host: ${{ secrets.EC2_SSH_HOST }}
             username: ${{ secrets.EC2_SSH_USER }}
             key: ${{ secrets.EC2_SSH_PRIVATE_KEY }}
+            envs: DOCKERHUB_USER,DOCKERHUB_TOKEN,DOCKER_TAG
             script: |
                 echo "Checking Docker installation..."
 
