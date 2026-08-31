@@ -27,4 +27,4 @@ jobs:
           # Set exit-code to '1' to break the build if issues are found
                 exit-code: '1'
                 ignore-unfixed: true
-                severity: 'CRITICAL'
+                severity: 'CRITICAL,HIGH'
