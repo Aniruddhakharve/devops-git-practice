@@ -18,6 +18,13 @@ jobs:
                 username: ${{ vars.DOCKERHUB_USER}}
                 password: ${{ secrets.DOCKERHUB_TOKEN }}
 
+            - name: Check Python packages
+              run: |
+                docker pull ${{ vars.DOCKERHUB_USER }}/appss:${{ github.sha }}
+                docker run --rm ${{ vars.DOCKERHUB_USER }}/appss:${{ github.sha }} \
+                  pip show msgpack setuptools
+
+
             - name: triviy image scan
               uses: aquasecurity/trivy-action@master
               with:
