@@ -22,11 +22,11 @@ jobs:
               run: |
                 docker pull ${{ vars.DOCKERHUB_USER }}/appss:${{ github.sha }}
                 docker run --rm ${{ vars.DOCKERHUB_USER }}/appss:${{ github.sha }} \
-                  pip show msgpack setuptools
+                python -c "import msgpack, setuptools; print('msgpack:', msgpack.__version__); print('setuptools:', setuptools.__version__)"
 
 
             - name: triviy image scan
-              uses: aquasecurity/trivy-action@master
+              uses: aquasecurity/trivy-action@v0.36.0
               with:
                 image-ref: ${{ vars.DOCKERHUB_USER }}/appss:${{ github.sha }}
                 scan-type: 'image'
