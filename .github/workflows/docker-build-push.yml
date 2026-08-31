@@ -33,6 +33,7 @@ jobs:
             context: .
             file: ./Dockerfile
             push: true
+            no-cache: true
             tags: | 
               ${{vars.DOCKERHUB_USER}}/appss:latest
               ${{ vars.DOCKERHUB_USER }}/appss:${{ github.sha }}
