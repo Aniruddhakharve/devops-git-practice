@@ -1,10 +1,11 @@
 name: hello-workflow
 
 on:
- push:
-   branches: [main]
-   paths:
-     - '*/*/hello.yml'
+#  push:
+#    branches: [main]
+#    paths:
+#      - '*/*/hello.yml'
+   workflow_dispatch:
   
 
 jobs:
