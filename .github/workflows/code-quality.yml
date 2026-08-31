@@ -27,3 +27,6 @@ jobs:
         - name: run linit flake 8
           run: |
             flake8  app.py
+  
+        - name: run SAST scan
+          run: bandit -r app.py
