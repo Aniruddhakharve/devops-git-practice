@@ -12,6 +12,7 @@ jobs:
         - name: checkout code
           uses: actions/checkout@v7
 
+
         - name: ssh to prod server and deploy
           uses: appleboy/ssh-action@v0.1.9
           with:
@@ -20,7 +21,61 @@ jobs:
             key: ${{ secrets.EC2_SSH_PRIVATE_KEY }}
             script: |
               echo "Deploying the app to server"
-              mkdir devops
+              mkdir -p ~/devops
             #   docker compose down
             #   docker compose pull
             #   docker compose up -d --force-recreate
+
+        - name: Copy files via SSH
+          uses: appleboy/scp-action@v1
+          with:
+            host: ${{ secrets.EC2_SSH_HOST }}
+            username: ${{ secrets.EC2_SSH_USER }}
+            key: ${{ secrets.EC2_SSH_PRIVATE_KEY }}
+            source: docker-compose.yml
+            target: ~/devops/
+
+        - name: ssh to prod server and deploy
+          uses: appleboy/ssh-action@v0.1.9
+          with:
+            host: ${{ secrets.EC2_SSH_HOST }}
+            username: ${{ secrets.EC2_SSH_USER }}
+            key: ${{ secrets.EC2_SSH_PRIVATE_KEY }}
+            script: |
+                echo "Checking Docker installation..."
+
+                if ! command -v docker &> /dev/null
+                then
+                echo "Docker not found. Installing Docker..."
+
+                sudo apt-get update
+                sudo apt-get install -y docker.io docker-compose-v2
+
+                sudo systemctl enable docker
+                sudo systemctl start docker
+
+                sudo usermod -aG docker $USER
+
+                echo "Docker installation completed."
+                else
+                echo "Docker is already installed."
+                fi
+
+
+                echo "Logging into Docker Hub..."
+
+                echo "$DOCKERHUB_TOKEN" | sudo docker login \
+                -u "$DOCKERHUB_USER" \
+                --password-stdin
+
+
+                cd ~/devops
+
+                echo "Deploying image: $DOCKERHUB_USER/appss:$DOCKER_TAG"
+
+                sudo docker compose pull
+
+                sudo docker compose up -d --force-recreate
+
+
+                echo "Deployment completed!"
