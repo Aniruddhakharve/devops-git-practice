@@ -13,4 +13,5 @@ def health():
     return "Server is up and running"
 
 
-app.run(port=80)  # nosec B104
+app.run(host="0.0.0.0", port=80)  # nosec B104
+
