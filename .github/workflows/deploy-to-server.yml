@@ -20,6 +20,7 @@ jobs:
             key: ${{ secrets.EC2_SSH_PRIVATE_KEY }}
             script: |
               echo "Deploying the app to server"
+              mkdir devops
             #   docker compose down
             #   docker compose pull
             #   docker compose up -d --force-recreate
